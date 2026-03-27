@@ -8,204 +8,234 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link rel="stylesheet" href="io.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-  <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
-
+    <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <!-- 
 4 - Vision section - 30 mins - 
 5 - Theme changes 
 6 - Logo animation - -->
 <style>
-
-
-  #preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-  }
-
-  #preloader-logo {
-    animation: pop-out 1.8s ease-in-out;
-  }
-  
-  @keyframes pop-out {
-    0% {
-      transform: scale(0);
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
     }
-  
-    90% {
-      transform: scale(1);
+
+    #preloader-logo {
+        animation: pop-out 1.8s ease-in-out;
     }
-  
-    100% {
-      transform: scale(1.2);
+
+    @keyframes pop-out {
+        0% {
+            transform: scale(0);
+        }
+
+        90% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(1.2);
+        }
     }
-  }
-  
-    .single-accordion{
-  border:1px solid rgba(15,29,48,.1);
-  margin-bottom:24px;
-  padding:24px 32px;
-  border-radius:16px
+
+    .single-accordion {
+        border: 1px solid rgba(15, 29, 48, .1);
+        margin-bottom: 24px;
+        padding: 24px 32px;
+        border-radius: 16px
+    }
+
+    .single-accordion .accordion-trigger {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-style: none;
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 18px;
+        line-height: 26px;
+        font-weight: 500;
+        text-align: left
+    }
+
+    .single-accordion .accordion-trigger .accordion-marker {
+        width: 24px;
+        height: 24px;
+        background-size: 100%;
+        transition: .4s ease-out;
+        transform: rotate(0)
+    }
+
+    @media(max-width: 767px) {
+        .single-accordion .accordion-trigger {
+            font-size: 16px
+        }
+
+        .single-accordion {
+            padding: 20px
+        }
+    }
+
+    .single-accordion.active .accordion-trigger .accordion-marker {
+        transform: rotate(180deg)
+    }
+
+    .single-accordion.active .accordion-answer {
+        grid-template-rows: 1fr;
+        padding-top: 24px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px
+    }
+
+    .single-accordion .accordion-answer {
+        display: grid;
+        overflow: hidden;
+        grid-template-rows: 0fr;
+        transition: .4s ease-out
+    }
+
+    .single-accordion .accordion-answer .answer-wrapper {
+        min-height: 0
+    }
+
+    .single-accordion .accordion-answer .answer-wrapper p {
+        font-size: 15px;
+        color: rgba(0, 0, 0, 0.7);
+        line-height: 24px;
+        margin-bottom: 0
+    }
+
+    @media(max-width: 767px) {
+        .single-accordion .accordion-answer .answer-wrapper p {
+            font-size: 14px
+        }
+    }
+
+    .single-accordion .accordion-answer.active {
+        grid-template-rows: 1fr;
+        padding-top: 24px
+    }
+
+    .single-accordion:last-child {
+        margin-bottom: 0
+    }
+
+
+    .t-slider {
+        position: relative;
+        width: 100%;
+    }
+
+    .t-slider .swiper {
+        padding-bottom: 40px;
+    }
+
+    .t-slider .swiper-slide {
+        border-radius: 10px;
+        overflow: hidden;
+        aspect-ratio: 9 / 16;
+        max-width: 250px;
+    }
+
+    .t-slider .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 10px;
+    }
+
+    /* Navigation arrows */
+    .t-slider .swiper-button-prev,
+    .t-slider .swiper-button-next {
+        width: 36px;
+        height: 36px;
+        background: white;
+        color: black;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .t-slider .swiper-button-prev::after,
+    .t-slider .swiper-button-next::after {
+        font-size: 16px;
+    }
+
+    /* Pagination */
+    .t-slider .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        background: #999;
+        opacity: 0.5;
+    }
+
+    .t-slider .swiper-pagination-bullet-active {
+        background: #b3f26a;
+        opacity: 1;
+    }
+
+    .t-slider .swiper-slide {
+        border-radius: 10px;
+        overflow: hidden;
+        max-width: 100% !important;
+        aspect-ratio: auto !important;
+    }
+
+.loader-form {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.399) 0%, rgba(0, 0, 0, 0.04) 100%);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  pointer-events: none;
 }
 
-.single-accordion .accordion-trigger{
-  display:flex;
-  width:100%;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  border-style:none;
-  background-color:rgba(0,0,0,0);
-  font-size:18px;
-  line-height:26px;
-  font-weight:500;
-  text-align:left
-}
-
-.single-accordion .accordion-trigger .accordion-marker{
-  width:24px;
-  height:24px;
-  background-size:100%;
-  transition:.4s ease-out;
-  transform:rotate(0)
-}
-
-@media(max-width: 767px){
-  .single-accordion .accordion-trigger{
-    font-size:16px
-  }
-
-  .single-accordion{
-    padding:20px
-  }
-}
-
-.single-accordion.active .accordion-trigger .accordion-marker{
-  transform:rotate(180deg)
-}
-
-.single-accordion.active .accordion-answer{
-  grid-template-rows:1fr;
-  padding-top:24px;
-  border-bottom-left-radius:8px;
-  border-bottom-right-radius:8px
-}
-
-.single-accordion .accordion-answer{
-  display:grid;
-  overflow:hidden;
-  grid-template-rows:0fr;
-  transition:.4s ease-out
-}
-
-.single-accordion .accordion-answer .answer-wrapper{
-  min-height:0
-}
-
-.single-accordion .accordion-answer .answer-wrapper p{
-  font-size:15px;
-  color:rgba(0, 0, 0, 0.7);
-  line-height:24px;
-  margin-bottom:0
-}
-
-@media(max-width: 767px){
-  .single-accordion .accordion-answer .answer-wrapper p{
-    font-size:14px
-  }
-}
-
-.single-accordion .accordion-answer.active{
-  grid-template-rows:1fr;
-  padding-top:24px
-}
-
-.single-accordion:last-child{
-  margin-bottom:0
-}
-
-
-.t-slider {
-  position: relative;
-  width: 100%;
-}
-
-.t-slider .swiper {
-  padding-bottom: 40px;
-}
-
-.t-slider .swiper-slide {
-  border-radius: 10px;
-  overflow: hidden;
-  aspect-ratio: 9 / 16;
-  max-width: 250px;
-}
-
-.t-slider .swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 10px;
-}
-
-/* Navigation arrows */
-.t-slider .swiper-button-prev,
-.t-slider .swiper-button-next {
-  width: 36px;
-  height: 36px;
-  background: white;
-  color: black;
+.loading {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: transparent;
   border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
 
-.t-slider .swiper-button-prev::after,
-.t-slider .swiper-button-next::after {
-  font-size: 16px;
-}
-
-/* Pagination */
-.t-slider .swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  background: #999;
-  opacity: 0.5;
-}
-
-.t-slider .swiper-pagination-bullet-active {
-  background: #b3f26a;
-  opacity: 1;
-}
-
-.t-slider .swiper-slide {
-    border-radius: 10px;
-    overflow: hidden;
-    max-width: 100% !important;
-    aspect-ratio: auto !important;
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
   }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 </style>
 
 <body class="bg-slate-50 text-slate-900 antialiased">
     <div id="preloader">
-        <div id="preloader-logo"><img
-            src="img/klf-logo.webp" class="w-[50%] mx-auto" alt=""> </div>
+        <div id="preloader-logo"><img src="img/klf-logo.webp" class="w-[50%] mx-auto" alt=""> </div>
     </div>
     <!-- Page Wrapper -->
-    <div class="main-content">
+    <div class="main-content" id="main-content">
         <!-- Header -->
         <header class="border-b border-slate-200 bg-white/80 backdrop-blur z-20 sticky top-0">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
@@ -454,94 +484,96 @@
         </section>
 
         <section class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-6">
-    
-    <!-- Heading -->
-    <div class="text-center mb-16">
-      <span class="text-sm font-bold text-amber-400 tracking-wider uppercase">
-        Leadership
-      </span>
-      <h2 class="text-3xl md:text-5xl text-[#125a21] font-bold mt-3">
-        Meet Our Founders
-      </h2>
-      <p class="max-w-2xl mx-auto mt-4 text-lg text-slate-600">
-        Visionary leadership backed by experience, discipline, and innovation.
-      </p>
-    </div>
+            <div class="max-w-7xl mx-auto px-6">
 
-    <!-- Founders Grid -->
-    <div class="grid md:grid-cols-2 gap-10">
+                <!-- Heading -->
+                <div class="text-center mb-16">
+                    <span class="text-sm font-bold text-amber-400 tracking-wider uppercase">
+                        Leadership
+                    </span>
+                    <h2 class="text-3xl md:text-5xl text-[#125a21] font-bold mt-3">
+                        Meet Our Founders
+                    </h2>
+                    <p class="max-w-2xl mx-auto mt-4 text-lg text-slate-600">
+                        Visionary leadership backed by experience, discipline, and innovation.
+                    </p>
+                </div>
 
-      <!-- Founder 1 -->
-      <div class="bg-white border border-emerald-500/10 rounded-2xl shadow-sm p-6 hover:shadow-md transition">
-        
-        <div class="flex items-center gap-5 mb-5">
-          <img 
-            src="img/download.jpeg" 
-            class="w-24 h-24 rounded-full object-cover border border-slate-200"
-            alt="Founder"
-          />
-          <div>
-            <h3 class="text-xl font-bold text-[#125a21]">
-              Mr. V. Krishania
-            </h3>
-            <p class="text-sm text-slate-500">
-              Founder & Managing Director
-            </p>
-          </div>
-        </div>
+                <!-- Founders Grid -->
+                <div class="grid md:grid-cols-2 gap-10">
 
-        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-3">
-          A distinguished ex-defence officer with over 25 years of service, Mr. Krishania brings unmatched discipline, leadership, and technical expertise in electrical engineering.
-        </p>
+                    <!-- Founder 1 -->
+                    <div
+                        class="bg-white border border-emerald-500/10 rounded-2xl shadow-sm p-6 hover:shadow-md transition">
 
-        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-3">
-          His experience in trial and testing units shaped his problem-solving mindset and precision-driven approach, which now drives the company’s operational excellence.
-        </p>
+                        <div class="flex items-center gap-5 mb-5">
+                            <img src="img/download.jpeg"
+                                class="w-24 h-24 rounded-full object-cover border border-slate-200" alt="Founder" />
+                            <div>
+                                <h3 class="text-xl font-bold text-[#125a21]">
+                                    Mr. V. Krishania
+                                </h3>
+                                <p class="text-sm text-slate-500">
+                                    Founder & Managing Director
+                                </p>
+                            </div>
+                        </div>
 
-        <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
-          His leadership blends military values with innovation, ensuring quality, integrity, and sustainable growth across all operations.
-        </p>
+                        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-3">
+                            A distinguished ex-defence officer with over 25 years of service, Mr. Krishania brings
+                            unmatched discipline, leadership, and technical expertise in electrical engineering.
+                        </p>
 
-      </div>
+                        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-3">
+                            His experience in trial and testing units shaped his problem-solving mindset and
+                            precision-driven approach, which now drives the company’s operational excellence.
+                        </p>
 
-      <!-- Founder 2 -->
-      <div class="bg-white border border-emerald-500/10 rounded-2xl shadow-sm p-6 hover:shadow-md transition">
-        
-        <div class="flex items-center gap-5 mb-5">
-          <img 
-            src="img/download (1).jpeg" 
-            class="w-24 h-24 rounded-full object-cover border border-slate-200"
-            alt="Co-Founder"
-          />
-          <div>
-            <h3 class="text-xl font-bold text-[#125a21]">
-              Mr. Vaibhav Gupta
-            </h3>
-            <p class="text-sm text-slate-500">
-              Co-Founder
-            </p>
-          </div>
-        </div>
+                        <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                            His leadership blends military values with innovation, ensuring quality, integrity, and
+                            sustainable growth across all operations.
+                        </p>
 
-        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-3">
-          Currently pursuing B.Tech at BITS Pilani, Mr. Gupta represents the new generation of dynamic leadership within the organization.
-        </p>
+                    </div>
 
-        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-3">
-          His energy, innovative mindset, and forward-thinking approach have played a key role in accelerating business growth and modernizing operations.
-        </p>
+                    <!-- Founder 2 -->
+                    <div
+                        class="bg-white border border-emerald-500/10 rounded-2xl shadow-sm p-6 hover:shadow-md transition">
 
-        <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
-          He continues to inspire the team with his vision, contributing actively to building a future-ready organization.
-        </p>
+                        <div class="flex items-center gap-5 mb-5">
+                            <img src="img/download (1).jpeg"
+                                class="w-24 h-24 rounded-full object-cover border border-slate-200" alt="Co-Founder" />
+                            <div>
+                                <h3 class="text-xl font-bold text-[#125a21]">
+                                    Mr. Vaibhav Gupta
+                                </h3>
+                                <p class="text-sm text-slate-500">
+                                    Co-Founder
+                                </p>
+                            </div>
+                        </div>
 
-      </div>
+                        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-3">
+                            Currently pursuing B.Tech at BITS Pilani, Mr. Gupta represents the new generation of dynamic
+                            leadership within the organization.
+                        </p>
 
-    </div>
+                        <p class="text-sm sm:text-base text-slate-700 leading-relaxed mb-3">
+                            His energy, innovative mindset, and forward-thinking approach have played a key role in
+                            accelerating business growth and modernizing operations.
+                        </p>
 
-  </div>
-</section>
+                        <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
+                            He continues to inspire the team with his vision, contributing actively to building a
+                            future-ready organization.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
 
         <section class="pt-10 pb-20">
             <div class="max-w-6xl h-[400px] mx-auto" id="services">
@@ -640,20 +672,23 @@
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="text-center p-6">
-                        <div class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
+                        <div
+                            class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-target text-[#f9c31f]">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <circle cx="12" cy="12" r="6"></circle>
                                 <circle cx="12" cy="12" r="2"></circle>
-                            </svg></div>
+                            </svg>
+                        </div>
                         <h3 class="text-lg font-bold text-foreground mb-2 font-sans">Customer Focus</h3>
                         <p class="text-muted-foreground text-sm leading-relaxed">Your satisfaction drives every decision
                             we make.</p>
                     </div>
                     <div class="text-center p-6">
-                        <div class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
+                        <div
+                            class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-scale text-[#f9c31f]">
@@ -662,51 +697,59 @@
                                 <path d="M7 21h10"></path>
                                 <path d="M12 3v18"></path>
                                 <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path>
-                            </svg></div>
+                            </svg>
+                        </div>
                         <h3 class="text-lg font-bold text-foreground mb-2 font-sans">Integrity</h3>
                         <p class="text-muted-foreground text-sm leading-relaxed">Honest, transparent, and ethical in all
                             dealings.</p>
                     </div>
                     <div class="text-center p-6">
-                        <div class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
+                        <div
+                            class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-briefcase text-[#f9c31f]">
                                 <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                                 <rect width="20" height="14" x="2" y="6" rx="2"></rect>
-                            </svg></div>
+                            </svg>
+                        </div>
                         <h3 class="text-lg font-bold text-foreground mb-2 font-sans">Accountability</h3>
                         <p class="text-muted-foreground text-sm leading-relaxed">We own our commitments and deliver on
                             every promise.</p>
                     </div>
                     <div class="text-center p-6">
-                        <div class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
+                        <div
+                            class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-star text-[#f9c31f]">
                                 <path
                                     d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
                                 </path>
-                            </svg></div>
+                            </svg>
+                        </div>
                         <h3 class="text-lg font-bold text-foreground mb-2 font-sans">Professionalism</h3>
                         <p class="text-muted-foreground text-sm leading-relaxed">Trained teams, sharp processes,
                             consistent results.</p>
                     </div>
                     <div class="text-center p-6">
-                        <div class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
+                        <div
+                            class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-heart text-[#f9c31f]">
                                 <path
                                     d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
                                 </path>
-                            </svg></div>
+                            </svg>
+                        </div>
                         <h3 class="text-lg font-bold text-foreground mb-2 font-sans">Service Excellence</h3>
                         <p class="text-muted-foreground text-sm leading-relaxed">Going beyond expectations, every single
                             day.</p>
                     </div>
                     <div class="text-center p-6">
-                        <div class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
+                        <div
+                            class="w-14 h-14 rounded-full bg-[#f9c31f]/15 flex items-center justify-center mx-auto mb-5">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-hard-hat text-[#f9c31f]">
@@ -714,7 +757,8 @@
                                 <path d="M14 6a6 6 0 0 1 6 6v3"></path>
                                 <path d="M4 15v-3a6 6 0 0 1 6-6"></path>
                                 <rect x="2" y="15" width="20" height="4" rx="1"></rect>
-                            </svg></div>
+                            </svg>
+                        </div>
                         <h3 class="text-lg font-bold text-foreground mb-2 font-sans">Health &amp; Safety</h3>
                         <p class="text-muted-foreground text-sm leading-relaxed">Uncompromising standards for people and
                             places.</p>
@@ -724,83 +768,67 @@
         </section>
 
         <section class="py-16 md:py-24 bg-primary relative">
-  <div class="max-w-7xl mx-auto px-6">
-    
-    <h2 class="text-2xl md:text-4xl font-bold text-center text-[#125a21]">
-     Drop Us Your Query
-    </h2>
+            <div class="loader-form flex items-center justify-center" style="display: none;">
+                <span class="loading"></span>
+            </div>
+            <div class="max-w-7xl mx-auto px-6">
 
-    <form class="max-w-[580px] mx-auto mt-12">
-      
-      <div class="grid md:grid-cols-2 gap-4">
-        
-        <div class="flex flex-col gap-1.5">
-          <label for="name" class="pl-1 text-md text-primary-foreground">
-            Name
-          </label>
-          <input
-            type="text"
-            name="username"
-            id="name"
-            required
-            class="bg-white border-[#9ce809] border rounded-lg px-[10px] py-[6px] text-primary-foreground placeholder:text-primary-foreground/50"
-            placeholder="Your name"
-          />
-        </div>
+                <h2 class="text-2xl md:text-4xl font-bold text-center text-[#125a21]">
+                    Drop Us Your Query
+                </h2>
 
-        <div class="flex flex-col gap-1.5">
-          <label for="number" class="pl-1 text-md text-primary-foreground">
-            Phone Number
-          </label>
-          <input
-            type="tel"
-            name="number"
-            id="number"
-            class="bg-white border-[#9ce809] border rounded-lg px-[10px] py-[6px] text-primary-foreground placeholder:text-primary-foreground/50"
-            placeholder="Your phone number"
-          />
-        </div>
+                <form id="form" method="post" class="max-w-[580px] mx-auto mt-12">
 
-      </div>
+                    <div class="grid md:grid-cols-2 gap-4">
 
-      <div class="flex flex-col gap-1.5 mt-4">
-        <label for="email" class="pl-1 text-md text-primary-foreground">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          required
-          class="bg-white border-[#9ce809] border rounded-lg px-[10px] py-[6px] text-primary-foreground placeholder:text-primary-foreground/50"
-          placeholder="Your email"
-        />
-      </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label for="username" for="name" class="pl-1 text-md text-primary-foreground">
+                                Name
+                            </label>
+                            <input type="text" name="username" id="name" required
+                                class="bg-white border-[#9ce809] border rounded-lg px-[10px] py-[6px] text-primary-foreground placeholder:text-primary-foreground/50"
+                                placeholder="Your name" />
+                        </div>
 
-      <div class="flex flex-col gap-1.5 mt-4">
-        <label for="query" class="pl-1 text-md text-primary-foreground">
-          Query
-        </label>
-        <textarea
-          name="query"
-          id="query"
-          class="bg-white border-[#9ce809] border rounded-lg px-[10px] py-[6px] text-primary-foreground placeholder:text-primary-foreground/50"
-          placeholder="How can we help you?"
-        ></textarea>
-      </div>
+                        <div class="flex flex-col gap-1.5">
+                            <label for="number" class="pl-1 text-md text-primary-foreground">
+                                Phone Number
+                            </label>
+                            <input type="number" name="number" id="number"
+                                class="bg-white border-[#9ce809] border rounded-lg px-[10px] py-[6px] text-primary-foreground placeholder:text-primary-foreground/50"
+                                placeholder="Your phone number" />
+                        </div>
 
-      <div class="flex justify-center mt-8">
-        <button
-          type="submit"
-          class="bg-[#125a21] text-white rounded-lg min-w-[260px] bg-accent text-accent-foreground hover:bg-accent/90 rounded-lg py-3 px-5 text-base font-semibold"
-        >
-          Submit
-        </button>
-      </div>
+                    </div>
 
-    </form>
-  </div>
-</section>
+                    <div class="flex flex-col gap-1.5 mt-4">
+                        <label for="email" class="pl-1 text-md text-primary-foreground">
+                            Email
+                        </label>
+                        <input type="email" name="email" id="email" required
+                            class="bg-white border-[#9ce809] border rounded-lg px-[10px] py-[6px] text-primary-foreground placeholder:text-primary-foreground/50"
+                            placeholder="Your email" />
+                    </div>
+
+                    <div class="flex flex-col gap-1.5 mt-4">
+                        <label for="query" class="pl-1 text-md text-primary-foreground">
+                            Query
+                        </label>
+                        <textarea name="query" id="query"
+                            class="bg-white border-[#9ce809] border rounded-lg px-[10px] py-[6px] text-primary-foreground placeholder:text-primary-foreground/50"
+                            placeholder="How can we help you?"></textarea>
+                    </div>
+
+                    <div class="flex justify-center mt-8">
+                        <button href="#!" id="submit-button" type="submit"
+                            class="button bg-[#125a21] text-white rounded-lg min-w-[260px] bg-accent text-accent-foreground hover:bg-accent/90 rounded-lg py-3 px-5 text-base font-semibold">
+                            Submit
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </section>
 
 
         <section id="why"
@@ -853,205 +881,185 @@
         </section>
 
         <section class="pb-[30px] pt-[40px] md:pt-[80px] testimonial-section overflow-hidden" id="testimonials">
-        <div class="max-w-7xl mx-auto px-6">
-        <h1 class="text-2xl md:text-4xl font-bold text-center text-[#125a21]">
-          Testimonials
-        </h1>
-        <div class="">
-          <div class="t-slider mt-[40px] lg:mt-6">
-            <div class="swiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide flex flex-col justify-between gap-3">
-                  <div class="p-[16px] md:p-[32px] rounded-[20px]">
-                    <img src="https://files.svgcdn.io/fa/quote-left.svg" loading="lazy" class="!w-[30px] !h-[30px]" alt="" />
-                    <p class="text-roseGold text-[16px] md:text-[18px] mt-[32px]">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum qui, eius sapiente ullam doloremque, excepturi consectetur perspiciatis tempore dolorum optio beatae nemo adipisci quia iusto iste quasi mollitia in unde!
-                    </p>
-                    <p class="text-[18px] mb-0 mt-3"> - Divya Menon</p>
-                  </div>
-                </div>
-                <div class="swiper-slide flex flex-col justify-between gap-3">
-                  <div class="p-[16px] md:p-[32px] rounded-[20px]">
-                    <img src="https://files.svgcdn.io/fa/quote-left.svg" loading="lazy" class="!w-[30px] !h-[30px]" alt="" />
-                    <p class="text-roseGold text-[16px] md:text-[18px] mt-[32px]">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem natus molestias soluta odio mollitia sit distinctio totam ipsum voluptate tempora perspiciatis suscipit, debitis quod accusantium cumque earum fuga repellat. Animi ad possimus consequuntur assumenda quae?
-                    </p>
-                    <p class="text-[18px] mb-0 mt-3"> - Elsa</p>
-                  </div>
-                </div>
-                <div class="swiper-slide flex flex-col justify-between gap-3">
-                  <div class="p-[16px] md:p-[32px] rounded-[20px]">
-                    <img src="https://files.svgcdn.io/fa/quote-left.svg" loading="lazy" class="!w-[30px] !h-[30px]" alt="" />
-                    <p class="text-roseGold text-[16px] md:text-[18px] mt-[32px]">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae, dolores eligendi harum mollitia quo reprehenderit unde accusantium maxime deleniti a provident eum doloremque perspiciatis, eaque esse, vitae sit consequuntur quisquam!
-                    </p>
-                    <p class="text-[18px] mb-0 mt-3"> - Max</p>
-                  </div>
-                </div>
-                <div class="swiper-slide flex flex-col justify-between gap-3">
-                  <div class="p-[16px] md:p-[32px] rounded-[20px]">
-                    <img src="https://files.svgcdn.io/fa/quote-left.svg" loading="lazy" class="!w-[30px] !h-[30px]" alt="" />
-                    <p class="text-roseGold text-[16px] md:text-[18px] mt-[32px]">
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ratione officiis. Voluptatem modi minima voluptates reprehenderit ut corporis iste! Numquam alias ea possimus officia non.
-                    </p>
-                    <p class="text-[18px] mb-0 mt-3"> - Anshul</p>
-                  </div>
-                </div>
-                <div class="swiper-slide flex flex-col justify-between gap-3">
-                  <div class="p-[16px] md:p-[32px] rounded-[20px]">
-                    <img src="https://files.svgcdn.io/fa/quote-left.svg" loading="lazy" class="!w-[30px] !h-[30px]" alt="" />
-                    <p class="text-roseGold text-[16px] md:text-[18px] mt-[32px]">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis provident assumenda ad quaerat voluptatibus in error ipsa molestias, officiis alias, necessitatibus vitae harum repellendus veritatis iure, maxime illo.
-                    </p>
-                    <p class="text-[18px] mb-0 mt-3"> - Ayra</p>
-                  </div>
-                </div>
-                
-              </div>
-              <!-- <div class="swiper-button-prev hidden !md:flex"></div>
+            <div class="max-w-7xl mx-auto px-6">
+                <h1 class="text-2xl md:text-4xl font-bold text-center text-[#125a21]">
+                    Testimonials
+                </h1>
+                <div class="">
+                    <div class="t-slider mt-[40px] lg:mt-6">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide flex flex-col justify-between gap-3">
+                                    <div class="p-[16px] md:p-[32px] rounded-[20px]">
+                                        <img src="https://files.svgcdn.io/fa/quote-left.svg" loading="lazy"
+                                            class="!w-[30px] !h-[30px]" alt="" />
+                                        <p class="text-roseGold text-[16px] md:text-[18px] mt-[32px]">
+                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum qui, eius
+                                            sapiente ullam doloremque, excepturi consectetur perspiciatis tempore
+                                            dolorum optio beatae nemo adipisci quia iusto iste quasi mollitia in unde!
+                                        </p>
+                                        <p class="text-[18px] mb-0 mt-3"> - Divya Menon</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide flex flex-col justify-between gap-3">
+                                    <div class="p-[16px] md:p-[32px] rounded-[20px]">
+                                        <img src="https://files.svgcdn.io/fa/quote-left.svg" loading="lazy"
+                                            class="!w-[30px] !h-[30px]" alt="" />
+                                        <p class="text-roseGold text-[16px] md:text-[18px] mt-[32px]">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem natus molestias
+                                            soluta odio mollitia sit distinctio totam ipsum voluptate tempora
+                                            perspiciatis suscipit, debitis quod accusantium cumque earum fuga repellat.
+                                            Animi ad possimus consequuntur assumenda quae?
+                                        </p>
+                                        <p class="text-[18px] mb-0 mt-3"> - Elsa</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide flex flex-col justify-between gap-3">
+                                    <div class="p-[16px] md:p-[32px] rounded-[20px]">
+                                        <img src="https://files.svgcdn.io/fa/quote-left.svg" loading="lazy"
+                                            class="!w-[30px] !h-[30px]" alt="" />
+                                        <p class="text-roseGold text-[16px] md:text-[18px] mt-[32px]">
+                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae, dolores
+                                            eligendi harum mollitia quo reprehenderit unde accusantium maxime deleniti a
+                                            provident eum doloremque perspiciatis, eaque esse, vitae sit consequuntur
+                                            quisquam!
+                                        </p>
+                                        <p class="text-[18px] mb-0 mt-3"> - Max</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide flex flex-col justify-between gap-3">
+                                    <div class="p-[16px] md:p-[32px] rounded-[20px]">
+                                        <img src="https://files.svgcdn.io/fa/quote-left.svg" loading="lazy"
+                                            class="!w-[30px] !h-[30px]" alt="" />
+                                        <p class="text-roseGold text-[16px] md:text-[18px] mt-[32px]">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, ratione
+                                            officiis. Voluptatem modi minima voluptates reprehenderit ut corporis iste!
+                                            Numquam alias ea possimus officia non.
+                                        </p>
+                                        <p class="text-[18px] mb-0 mt-3"> - Anshul</p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide flex flex-col justify-between gap-3">
+                                    <div class="p-[16px] md:p-[32px] rounded-[20px]">
+                                        <img src="https://files.svgcdn.io/fa/quote-left.svg" loading="lazy"
+                                            class="!w-[30px] !h-[30px]" alt="" />
+                                        <p class="text-roseGold text-[16px] md:text-[18px] mt-[32px]">
+                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis provident
+                                            assumenda ad quaerat voluptatibus in error ipsa molestias, officiis alias,
+                                            necessitatibus vitae harum repellendus veritatis iure, maxime illo.
+                                        </p>
+                                        <p class="text-[18px] mb-0 mt-3"> - Ayra</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- <div class="swiper-button-prev hidden !md:flex"></div>
               <div class="swiper-button-next hidden !md:flex"></div> -->
-              <div class="swiper-pagination"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
         <section class="py-[80px]">
             <div class="max-w-7xl mx-auto px-6">
                 <h2 class="text-3xl md:text-5xl text-[#125a21] font-bold mt-3 text-center">
-                Frequently Asked Questions
-                </h1>
-                <!-- <p class="text-center mt-2 text-black/70">Everything you need to know about Clarus & Verix</p> -->
-            <div
-            class="mt-4 lg:mt-[60px] mx-auto max-w-[1030px]"
-            data-accordion-container-faq
-            >
-            
-            <div class="accordion-block">
-                <div class="single-accordion active">
-                <button class="accordion-trigger">
-                    What services does KL Facility provide?
+                    Frequently Asked Questions
+                    </h1>
+                    <!-- <p class="text-center mt-2 text-black/70">Everything you need to know about Clarus & Verix</p> -->
+                    <div class="mt-4 lg:mt-[60px] mx-auto max-w-[1030px]" data-accordion-container-faq>
 
-                    <span class="accordion-marker">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                    >
-                        <path
-                        d="M6 9L12 15L18 9"
-                        stroke="#0F1D30"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        />
-                    </svg>
-                    </span>
-                </button>
+                        <div class="accordion-block">
+                            <div class="single-accordion active">
+                                <button class="accordion-trigger">
+                                    What services does KL Facility provide?
 
-                <div class="accordion-answer">
-                    <div class="answer-wrapper">
-                    <p>
-                       KL Facility offers integrated facility management services including housekeeping, technical maintenance, security services, staffing solutions, and specialized support such as HVAC and electrical maintenance.
-                    </p>
+                                    <span class="accordion-marker">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path d="M6 9L12 15L18 9" stroke="#0F1D30" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                </button>
+
+                                <div class="accordion-answer">
+                                    <div class="answer-wrapper">
+                                        <p>
+                                            KL Facility offers integrated facility management services including
+                                            housekeeping, technical maintenance, security services, staffing solutions,
+                                            and specialized support such as HVAC and electrical maintenance.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-accordion">
+                                <button class="accordion-trigger">
+                                    Which locations do you operate in?
+                                    <span class="accordion-marker">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path d="M6 9L12 15L18 9" stroke="#0F1D30" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                </button>
+
+                                <div class="accordion-answer">
+                                    <div class="answer-wrapper">
+                                        <p>
+                                            We operate across multiple locations in India including Mumbai, Bangalore,
+                                            Vizag, and expanding into other cities and remote project sites.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-accordion">
+                                <button class="accordion-trigger">
+                                    Are your services compliant with industry regulations?
+                                    <span class="accordion-marker">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path d="M6 9L12 15L18 9" stroke="#0F1D30" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                </button>
+
+                                <div class="accordion-answer">
+                                    <div class="answer-wrapper">
+                                        <p>
+                                            Yes, we strictly follow all statutory requirements, labor laws, and safety
+                                            regulations to ensure complete compliance across all our operations.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-accordion">
+                                <button class="accordion-trigger">
+                                    Do you provide customized facility management solutions?
+                                    <span class="accordion-marker">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path d="M6 9L12 15L18 9" stroke="#0F1D30" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                </button>
+
+                                <div class="accordion-answer">
+                                    <div class="answer-wrapper">
+                                        <p>
+                                            Absolutely. Our services are tailored to meet specific client requirements,
+                                            ensuring efficient operations, cost optimization, and high-quality service
+                                            delivery.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                </div>
-                <div class="single-accordion">
-                <button class="accordion-trigger">
-                    Which locations do you operate in?
-                    <span class="accordion-marker">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                    >
-                        <path
-                        d="M6 9L12 15L18 9"
-                        stroke="#0F1D30"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        />
-                    </svg>
-                    </span>
-                </button>
-
-                <div class="accordion-answer">
-                    <div class="answer-wrapper">
-                    <p>
-                       We operate across multiple locations in India including Mumbai, Bangalore, Vizag, and expanding into other cities and remote project sites.
-                    </p>
-                    </div>
-                </div>
-                </div>
-                <div class="single-accordion">
-                <button class="accordion-trigger">
-                    Are your services compliant with industry regulations?
-                    <span class="accordion-marker">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                    >
-                        <path
-                        d="M6 9L12 15L18 9"
-                        stroke="#0F1D30"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        />
-                    </svg>
-                    </span>
-                </button>
-
-                <div class="accordion-answer">
-                    <div class="answer-wrapper">
-                    <p>
-                        Yes, we strictly follow all statutory requirements, labor laws, and safety regulations to ensure complete compliance across all our operations.
-                    </p>
-                    </div>
-                </div>
-                </div>
-                <div class="single-accordion">
-                <button class="accordion-trigger">
-                    Do you provide customized facility management solutions?
-                    <span class="accordion-marker">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                    >
-                        <path
-                        d="M6 9L12 15L18 9"
-                        stroke="#0F1D30"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        />
-                    </svg>
-                    </span>
-                </button>
-
-                <div class="accordion-answer">
-                    <div class="answer-wrapper">
-                    <p>
-                        Absolutely. Our services are tailored to meet specific client requirements, ensuring efficient operations, cost optimization, and high-quality service delivery.
-                    </p>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
 
             </div>
         </section>
@@ -1148,96 +1156,163 @@
         }
     </script>
     <script>
-    const isInitialLoad = !sessionStorage.getItem('hasVisitedBefore');
-    if (isInitialLoad) {
-      sessionStorage.setItem('hasVisitedBefore', 'true');
-      window.onload = function () {
-        setTimeout(function () {
-          document.getElementById('preloader').style.display = 'none';
-          document.getElementById('main-content').style.display = 'block';
-        }, 1800);
-      };
-    } else {
-      document.getElementById('preloader').style.display = 'none';
-      document.getElementById('main-content').style.display = 'block';
-    }
-  </script>
+        const isInitialLoad = !sessionStorage.getItem('hasVisitedBefore');
+        if (isInitialLoad) {
+            sessionStorage.setItem('hasVisitedBefore', 'true');
+            window.onload = function () {
+                setTimeout(function () {
+                    document.getElementById('preloader').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'block';
+                }, 1800);
+            };
+        } else {
+            document.getElementById('preloader').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }
+    </script>
     <script>
         // faq accordion
-window.addEventListener("load", () => {
-  const dataAccordionContainer = document.querySelectorAll(
-    "[data-accordion-container-faq]"
-  );
+        window.addEventListener("load", () => {
+            const dataAccordionContainer = document.querySelectorAll(
+                "[data-accordion-container-faq]"
+            );
 
-  dataAccordionContainer.forEach((accordionContainer) => {
-    const theTabsParent =
-      accordionContainer.querySelectorAll(".single-accordion");
-    const theTabs = accordionContainer.querySelectorAll(".accordion-trigger");
+            dataAccordionContainer.forEach((accordionContainer) => {
+                const theTabsParent =
+                    accordionContainer.querySelectorAll(".single-accordion");
+                const theTabs = accordionContainer.querySelectorAll(".accordion-trigger");
 
-    function theAccordionClicks(accordionClickEvent) {
-      // const clickedTab = accordionClickEvent.currentTarget;
-      const parentTab = this.parentElement;
+                function theAccordionClicks(accordionClickEvent) {
+                    // const clickedTab = accordionClickEvent.currentTarget;
+                    const parentTab = this.parentElement;
 
-      for (let i = 0; i < theTabsParent.length; i++) {
-        if (theTabsParent[i] != parentTab) {
-          theTabsParent[i].classList.remove("active");
-        }
-      }
+                    for (let i = 0; i < theTabsParent.length; i++) {
+                        if (theTabsParent[i] != parentTab) {
+                            theTabsParent[i].classList.remove("active");
+                        }
+                    }
 
-      if (parentTab.classList.contains("active")) {
-        parentTab.classList.remove("active");
-      } else {
-        parentTab.classList.add("active");
-      }
-      accordionClickEvent.preventDefault();
-    }
+                    if (parentTab.classList.contains("active")) {
+                        parentTab.classList.remove("active");
+                    } else {
+                        parentTab.classList.add("active");
+                    }
+                    accordionClickEvent.preventDefault();
+                }
 
-    for (let i = 0; i < theTabs.length; i++) {
-      theTabs[i].addEventListener("click", theAccordionClicks);
-    }
-  });
-});
+                for (let i = 0; i < theTabs.length; i++) {
+                    theTabs[i].addEventListener("click", theAccordionClicks);
+                }
+            });
+        });
     </script>
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>
-    new Swiper(".t-slider .swiper", {
-      slidesPerView: 4,
-      spaceBetween: 20,
-      navigation: {
-        nextEl: ".t-slider .swiper-button-next",
-        prevEl: ".t-slider .swiper-button-prev",
-      },
-      pagination: {
-        el: ".t-slider .swiper-pagination",
-        clickable: true,
-      },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 10,
-        },
-        640: {
-          slidesPerView: 2,
-        },
-        1024: {
-          slidesPerView: 3,
-        },
-      },
-    });
-  </script>
+        new Swiper(".t-slider .swiper", {
+            slidesPerView: 4,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: ".t-slider .swiper-button-next",
+                prevEl: ".t-slider .swiper-button-prev",
+            },
+            pagination: {
+                el: ".t-slider .swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    </script>
 
     <script>
-    // Initialize Lenis
-    const lenis = new Lenis({
-      autoRaf: true,
-    });
+        // Initialize Lenis
+        const lenis = new Lenis({
+            autoRaf: true,
+        });
 
-    // Listen for the scroll event and log the event data
-    lenis.on('scroll', (e) => {
-      // console.log(e);
+        // Listen for the scroll event and log the event data
+        lenis.on('scroll', (e) => {
+            // console.log(e);
+        });
+    </script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+    document.getElementById("form").addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent default form submission
+
+      const loader = document.querySelector('.loader-form');
+      const submitButton = document.getElementById("submit-button");
+
+      submitButton.disabled = true;
+      loader.style.display = 'flex';
+      loader.style.pointerEvents = 'all';
+
+      const formData = new FormData(this);
+
+      fetch("https://script.google.com/macros/s/AKfycbxSbPdOEW6qI5C6Wd7vYVNOayYAOk2WfZPtkdql1GlLTJ2nh2MgUmddIysWDVDuoKHuKQ/exec", {
+        method: "POST",
+        body: formData, // ✅ Don't manually set Content-Type
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === "success") {
+            Toastify({
+              text: data.message,
+              duration: 3000,
+              gravity: "bottom",
+              position: "right",
+              avatar: './img/tick.svg',
+              style: {
+                background: "linear-gradient(to right, #333333, #000000)",
+                borderRadius: "10px",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+              },
+            }).showToast();
+
+            document.getElementById("form").reset();
+          } else {
+            throw new Error(data.message || "Submission failed.");
+          }
+        })
+        .catch(error => {
+          console.error("Error!", error);
+          Toastify({
+            text: error.message || "An error occurred. Please try again.",
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            avatar: "./img/cross.svg",
+            style: {
+              background: "linear-gradient(to right, #333333, #000000)",
+              borderRadius: "10px",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+            },
+          }).showToast();
+        })
+        .finally(() => {
+          submitButton.disabled = false;
+          loader.style.display = 'none';
+          loader.style.pointerEvents = 'none';
+        });
     });
-  </script>
-  
+    </script>
+
+
 </body>
 
 </html>
