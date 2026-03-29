@@ -13,12 +13,56 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <!-- 
 4 - Vision section - 30 mins - 
 5 - Theme changes 
 6 - Logo animation - -->
 <style>
+
+    .roll-button {
+        @apply inline-flex items-center justify-center;
+        transition: .4s ease-out
+    }
+
+    .roll-button div .roll-button-content-hover {
+        position: absolute;
+        inset: 0;
+        transform: translateY(100%) skewY(18deg);
+        transform-origin: left center;
+        transition: .4s ease-out
+    }
+
+    .roll-button div .roll-button-content {
+        transform: translateY(0) skew(0);
+        transition: .4s ease-out;
+        display: inline-block
+    }
+
+    .roll-button:hover div .roll-button-content-hover {
+        transform: translateY(0%) skewY(0)
+    }
+
+    .roll-button:hover div .roll-button-content {
+        opacity: 0;
+        transform: translateY(-100%) skew(-18deg);
+        transition: .4s ease-out
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0000005f;
+        background: radial-gradient(circle,
+             rgba(0, 0, 0, 0.5) 0%), rgba(0, 0, 0, 0.117) 100%;
+        pointer-events: none;
+        /* background-color: #000000; */
+        opacity: 1.2;
+    }
     #preloader {
         position: fixed;
         top: 0;
@@ -35,7 +79,7 @@
     }
 
     #preloader-logo {
-        animation: pop-out 1.8s ease-in-out;
+        animation: pop-out 1.2s ease-in-out;
     }
 
     @keyframes pop-out {
@@ -247,18 +291,18 @@
                         KLF
                     </div> -->
                     <div>
-                        <h1 class="text-xl font-semibold tracking-tight">K L Facility</h1>
+                        <h1 class="text-xl font-bold tracking-tight">K L Facility</h1>
                         <!-- <p class="text-xs text-slate-500">
                             ISO 9001:2015 Certified · The Complete Facility Solution
                         </p> -->
                     </div>
                 </div>
                 <nav class="hidden md:flex items-center space-x-6 text-sm text-slate-600">
-                    <a href="#about" class="text-sm hover:text-[#125a21] transition">About</a>
-                    <a href="#services" class="text-sm hover:text-[#125a21] transition">Services</a>
+                    <a href="#about" class="text-sm font-semibold transition ease-linear duration-500 hover:text-emerald-600 transition">About</a>
+                    <a href="#services" class="text-sm font-semibold transition ease-linear duration-500  hover:text-emerald-600 transition">Services</a>
                     <!-- <a href="#sectors" class="text-sm hover:text-[#125a21] transition">Sectors</a> -->
-                    <a href="#why" class="text-sm hover:text-[#125a21] transition">Why KLF</a>
-                    <a href="#clients" class="text-sm hover:text-[#125a21] transition">Clients</a>
+                    <a href="#why" class="text-sm font-semibold transition ease-linear duration-500  hover:text-emerald-600 transition">Why KLF</a>
+                    <a href="#clients" class="text-sm font-semibold transition ease-linear duration-500  hover:text-emerald-600 transition">Clients</a>
                     <a href="#contact"
                         class="inline-flex items-center rounded-full border border-emerald-600 px-4 py-1.5 text-[#125a21] hover:bg-emerald-600 hover:text-white text-sm font-medium transition">
                         Contact
@@ -269,59 +313,78 @@
 
         <!-- Hero Section -->
         <section class="relative min-h-screen mt-[-72px] flex items-center justify-center overflow-hidden">
-            <div class="absolute inset-0 -z-10">
-                <div class="absolute top-20 -right-40 w-[600px] h-[600px] rounded-full bg-[#125a21]/5 blur-3xl"></div>
-                <div class="absolute -bottom-20 -left-40 w-[500px] h-[500px] rounded-full bg-[#f9c31f]/10 blur-3xl">
-                </div>
+            <div class="absolute top-0 left-0 right-0 bottom-0 h-full w-full">
+                <div class="overlay"></div>
+                <img class="h-full w-full object-cover hidden md:block" src="img/hero-desktop.webp" alt="" />
+                <img src="img/hero-mobile.webp"
+                class="h-full w-full object-bottom md:object-center object-cover block md:hidden" alt="">
             </div>
-            <div class="max-w-7xl mx-auto px-6 text-center z-1 relative">
+            <div class="max-w-7xl mx-auto px-6 text-center z-1 relative xl:pt-[60px]">
                 <div>
                     <span
-                        class="inline-block px-4 py-1.5 mb-6 text-xs font-semibold text-[#125a21] uppercase bg-white/5 backdrop-blur shadow-xl border border-emerald-500/40 rounded-full">
+                        class="inline-block px-4 py-1.5 mb-6 text-xs font-semibold text-white uppercase bg-white/20 backdrop-blur shadow-white/20 shadow-xl border border-white/50 rounded-full" data-aos="fade-up"
+     data-aos-duration="2000">
                         ISO 9001:2015 Certified
                     </span>
                     <!-- <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
                         The Complete <br><span class="text-amber-400">Facility Solution</span> for Modern Enterprises.
                     </h1> -->
                     <h1
-                        class="text-5xl md:text-7xl lg:text-8xl font-bold text-[#142018] leading-[1.1] tracking-tight mb-6">
+                        class="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-6 text-shadow-white text-shadow-2xl"
+                        data-aos="fade-up"
+                        data-aos-duration="3000"
+                    >
                         The Complete
                         <br />
-                        <span class="text-[#125a21]">Facility Solution</span>
+                        <span class="">Facility Solution</span>
                     </h1>
-                    <p class="max-w-2xl mx-auto text-lg md:text-xl text-[#6f7d73] leading-relaxed mb-10">
+                    <p class="max-w-2xl mx-auto text-lg md:text-xl text-white leading-relaxed mb-10"
+                        data-aos="fade-up"
+                        data-aos-duration="3000"
+                    >
                         Over 20 years of trusted facility management across Pan India delivering
                         excellence in hygiene, technical services, security, and staffing solutions.
                     </p>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4"
+                        data-aos="fade-up"
+                        data-aos-duration="3000"
+                    >
                         <a href="#contact"
-                            class="px-8 py-4 text-white rounded-lg bg-[#125a21] text-[#125a21] font-semibold text-base hover:bg-[#125a21]/90 transition-colors shadow-lg shadow-[#125a21]/20">
-                            Get in Touch
+                            class="roll-button px-8 py-4 text-white rounded-lg bg-[#125a21] text-[#125a21] font-semibold text-base transition-colors shadow-lg shadow-[#125a21]/20">
+                            <div class="relative overflow-hidden">
+                                <span class="roll-button-content"> Get in Touch</span>
+                                <span class="roll-button-content-hover"> Get in Touch</span>
+                            </div>
                         </a>
                         <a href="#about"
-                            class="px-8 py-4 rounded-lg border border-border text-foreground font-medium text-base hover:bg-muted transition-colors">
-                            Learn More
+                            class="roll-button px-8 py-4 text-white bg-white/20 rounded-lg border border-border text-foreground font-medium text-base hover:bg-muted transition-colors">
+                            <div class="relative overflow-hidden">
+                                <span class="roll-button-content"> Learn More</span>
+                                <span class="roll-button-content-hover"> Learn More</span>
+                            </div>
                         </a>
                     </div>
                     <div
-                        class="border-[#6f7d73]/40 px-6 pt-7 mt-8 border-t flex items-center w-fit gap-10 text-xs sm:text-sm mx-auto">
-                        <div class="flex items-center gap-2 border-emerald-600/60 text-black/80 mx-auto">
+                        data-aos="fade-up"
+                        data-aos-duration="3000"
+                        class="border-white/40 px-6 pt-7 mt-8 border-t flex items-center w-fit gap-10 text-xs sm:text-sm mx-auto">
+                        <div class="flex items-center gap-2 border-emerald-600/60 text-white mx-auto">
                             <svg class="e-font-icon-svg e-fas-check-circle w-4" fill="currentColor"
                                 viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z">
                                 </path>
                             </svg>
-                            <p class="font-semibold text-[#6f7d73]">Certified Company</p>
+                            <p class="font-semibold text-white/90">Certified Company</p>
                         </div>
-                        <div class="flex items-center gap-2 border-emerald-600/60 text-black/80 mx-auto">
+                        <div class="flex items-center gap-2 border-emerald-600/60 text-white mx-auto">
                             <svg class="e-font-icon-svg e-fas-user-friends w-4" fill="currentColor"
                                 viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32 80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4 24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48 0-61.9-50.1-112-112-112z">
                                 </path>
                             </svg>
-                            <p class="font-semibold text-[#6f7d73]">Profesional Staffs</p>
+                            <p class="font-semibold text-white/90">Profesional Staffs</p>
                         </div>
                         <!-- <div class="flex items-center gap-2 border-emerald-600/60 text-amber-500">
                             <svg class="e-font-icon-svg e-fas-smile w-4" fill="currentColor" viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm80 168c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm-160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm194.8 170.2C334.3 380.4 292.5 400 248 400s-86.3-19.6-114.8-53.8c-13.6-16.3 11-36.7 24.6-20.5 22.4 26.9 55.2 42.2 90.2 42.2s67.8-15.4 90.2-42.2c13.4-16.2 38.1 4.2 24.6 20.5z"></path></svg>
@@ -1113,6 +1176,10 @@
 
 
     </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init();
+    </script>
     <script src="tiny-slider.js"></script>
     <script>
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -1163,7 +1230,7 @@
                 setTimeout(function () {
                     document.getElementById('preloader').style.display = 'none';
                     document.getElementById('main-content').style.display = 'block';
-                }, 1800);
+                }, 1200);
             };
         } else {
             document.getElementById('preloader').style.display = 'none';
